@@ -12,7 +12,6 @@ interface MovieService {
     @GET("movie/popular")
     suspend fun getPopularMovies(@Header("Authorization") token: String): Response<MovieResponse>
 
-
     @GET("movie/{movieId}")
     suspend fun getSelectedMovieById(
         @Path("movieId") movieId: String,

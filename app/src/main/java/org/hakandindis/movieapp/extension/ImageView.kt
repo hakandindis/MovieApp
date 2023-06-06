@@ -15,7 +15,6 @@ fun ImageView.loadCircleImage(path: String?) {
 }
 
 
-
 fun ImageView.loadImage(path: String?) {
     Glide.with(this.context)
         .load("${ApiConstants.BASE_IMAGE_URL}$path")

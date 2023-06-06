@@ -9,17 +9,19 @@ import org.hakandindis.movieapp.data.remote.model.people.People
 import org.hakandindis.movieapp.databinding.RowPeopleItemBinding
 import org.hakandindis.movieapp.extension.loadCircleImage
 
-class PeopleAdapter: ListAdapter<People, PeopleViewHolder>(PeopleViewDiffUtil) {
+class PeopleAdapter : ListAdapter<People, PeopleViewHolder>(PeopleViewDiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RowPeopleItemBinding.inflate(inflater, parent, false)
         return PeopleViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) = holder.bind(currentList[position])
+    override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) =
+        holder.bind(currentList[position])
 }
 
-class PeopleViewHolder(private val binding: RowPeopleItemBinding): RecyclerView.ViewHolder(binding.root) {
+class PeopleViewHolder(private val binding: RowPeopleItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(people: People) {
         with(binding) {
@@ -32,7 +34,7 @@ class PeopleViewHolder(private val binding: RowPeopleItemBinding): RecyclerView.
 
 }
 
-object PeopleViewDiffUtil: DiffUtil.ItemCallback<People>() {
+object PeopleViewDiffUtil : DiffUtil.ItemCallback<People>() {
     override fun areItemsTheSame(oldItem: People, newItem: People) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: People, newItem: People) = oldItem == newItem

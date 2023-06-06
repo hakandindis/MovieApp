@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun observeEvents() {
-        viewModel.movieDetailResponse.observe(viewLifecycleOwner) {movie ->
+        viewModel.movieDetailResponse.observe(viewLifecycleOwner) { movie ->
             binding.fragmentDetailThumbnail.loadImage(movie.backdropPath)
             binding.fragmentDetailVote.text = movie.voteAverage.toString()
             binding.fragmentDetailStudio.text = movie.productionCompanies?.first()?.name
@@ -54,7 +54,7 @@ class DetailFragment : Fragment() {
             binding.fragmentDetailProgressbar.isVisible = it
         }
 
-        viewModel.errorMessage .observe(viewLifecycleOwner) {
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
             binding.fragmentDetailErrorText.text = it
             binding.fragmentDetailErrorText.isVisible = true
         }

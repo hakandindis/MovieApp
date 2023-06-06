@@ -14,4 +14,4 @@ data class MovieEntity(
     @ColumnInfo("movie_overview") val movieOverview: String,
     @ColumnInfo("movie_vote") val movieVote: Double,
     @ColumnInfo("thumbnail_url") val thumbnailUrl: String,
-): Parcelable
+) : Parcelable

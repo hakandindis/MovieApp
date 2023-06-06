@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
     private fun observeEvents() {
         viewModel.movieList.observe(viewLifecycleOwner) { list ->
-            if(list.isNullOrEmpty()) {
+            if (list.isNullOrEmpty()) {
                 binding.fragmentHomeErrorTextView.text = "There is any movie"
                 binding.fragmentHomeErrorTextView.isVisible = true
             } else {
