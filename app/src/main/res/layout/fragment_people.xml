@@ -4,24 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scene.home.HomeFragment">
+    tools:context=".scene.people.PeopleFragment">
 
     <TextView
-        android:id="@+id/fragment_home_error_text_view"
-        android:layout_width="0dp"
+        android:id="@+id/fragment_people_error_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:gravity="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="An unknown occurred" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="PEOPLE NOT FOUND"
+        tools:visibility="visible" />
 
     <ProgressBar
-        android:id="@+id/fragment_home_progressBar"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/fragment_people_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -34,16 +35,16 @@
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_home_movie_list"
-        tools:listitem="@layout/row_movie_item"
+        android:id="@+id/people_list"
         android:layout_width="0dp"
-        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:listitem="@layout/row_people_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

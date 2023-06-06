@@ -23,4 +23,14 @@
             android:name="movieId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="org.hakandindis.movieapp.scene.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="org.hakandindis.movieapp.scene.people.PeopleFragment"
+        android:label="People"
+        tools:layout="@layout/fragment_people" />
 </navigation>

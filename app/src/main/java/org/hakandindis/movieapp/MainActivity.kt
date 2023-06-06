@@ -3,9 +3,13 @@ package org.hakandindis.movieapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.hakandindis.movieapp.databinding.ActivityMainBinding
 
@@ -24,6 +28,19 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
 
         setupActionBarWithNavController(navController)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val navView: BottomNavigationView = binding.bottomNavigationView
+
+        val navController = findNavController(R.id.fragmentContainerView)
+        val appBarConfiguration =
+            AppBarConfiguration(setOf(R.id.homeFragment, R.id.peopleFragment, R.id.profileFragment))
+        //setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

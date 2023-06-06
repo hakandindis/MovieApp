@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.hakandindis.movieapp.BuildConfig
 import org.hakandindis.movieapp.data.remote.service.MovieService
+import org.hakandindis.movieapp.data.remote.service.PeopleService
 import org.hakandindis.movieapp.util.ApiConstants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -62,8 +63,14 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCoinService(retrofit: Retrofit): MovieService {
+    fun provideMovieService(retrofit: Retrofit): MovieService {
         return retrofit.create(MovieService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providePeopleService(retrofit: Retrofit): PeopleService {
+        return retrofit.create(PeopleService::class.java)
     }
 
 }
