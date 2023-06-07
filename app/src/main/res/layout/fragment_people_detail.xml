@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scene.detail.DetailFragment">
+    tools:context=".scene.people_detail.PeopleDetailFragment">
 
 
     <androidx.constraintlayout.widget.Group
@@ -129,6 +129,8 @@
 
     <ProgressBar
         android:id="@+id/fragment_detail_progressbar"
+        android:visibility="gone"
+        tools:visibility="visible"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -146,11 +148,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
-        tools:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="TextView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

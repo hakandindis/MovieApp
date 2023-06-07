@@ -6,15 +6,20 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieService {
 
     @GET("movie/popular")
-    suspend fun getPopularMovies(@Header("Authorization") token: String): Response<MovieResponse>
+    suspend fun getPopularMovies(
+        @Header("Authorization") token: String,
+        @Query("language") language: String
+    ): Response<MovieResponse>
 
     @GET("movie/{movieId}")
     suspend fun getSelectedMovieById(
         @Path("movieId") movieId: String,
-        @Header("Authorization") token: String
+        @Header("Authorization") token: String,
+        @Query("language") language: String
     ): Response<MovieDetailResponse>
 }

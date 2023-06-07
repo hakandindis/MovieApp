@@ -27,7 +27,8 @@ class PeopleViewModel @Inject constructor(private val peopleService: PeopleServi
 
         viewModelScope.launch {
             try {
-                val response = peopleService.getPopularPeople(ApiConstants.BEARER_TOKEN)
+                val response =
+                    peopleService.getPopularPeople(ApiConstants.BEARER_TOKEN, ApiConstants.TURKISH)
                 if (response.isSuccessful) {
                     peopleList.postValue(response.body()?.people)
                 } else {

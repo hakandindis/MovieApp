@@ -25,7 +25,8 @@ class DetailViewModel @Inject constructor(private val movieService: MovieService
             try {
                 val response = movieService.getSelectedMovieById(
                     movieId = movieId.toString(),
-                    token = ApiConstants.BEARER_TOKEN
+                    token = ApiConstants.BEARER_TOKEN,
+                    language = ApiConstants.TURKISH
                 )
 
                 if (response.isSuccessful) {

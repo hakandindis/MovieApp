@@ -9,18 +9,26 @@ import org.hakandindis.movieapp.data.remote.model.people.People
 import org.hakandindis.movieapp.databinding.RowPeopleItemBinding
 import org.hakandindis.movieapp.extension.loadCircleImage
 
-class PeopleAdapter : ListAdapter<People, PeopleViewHolder>(PeopleViewDiffUtil) {
+interface PeopleClickListener {
+    fun onPeopleClick(peopleId: Int?)
+}
+
+class PeopleAdapter(private val peopleClickListener: PeopleClickListener) :
+    ListAdapter<People, PeopleViewHolder>(PeopleViewDiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RowPeopleItemBinding.inflate(inflater, parent, false)
-        return PeopleViewHolder(binding)
+        return PeopleViewHolder(binding, peopleClickListener)
     }
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) =
         holder.bind(currentList[position])
 }
 
-class PeopleViewHolder(private val binding: RowPeopleItemBinding) :
+class PeopleViewHolder(
+    private val binding: RowPeopleItemBinding,
+    private val peopleClickListener: PeopleClickListener
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(people: People) {
@@ -29,9 +37,10 @@ class PeopleViewHolder(private val binding: RowPeopleItemBinding) :
             rowPeopleItemName.text = people.name
             rowPeopleItemGender.text = if (people.gender == 1) "Female" else "Male"
             rowPeopleItemVote.text = people.popularity.toString()
+
+            root.setOnClickListener { peopleClickListener.onPeopleClick(people.id) }
         }
     }
-
 }
 
 object PeopleViewDiffUtil : DiffUtil.ItemCallback<People>() {

@@ -32,5 +32,18 @@
         android:id="@+id/peopleFragment"
         android:name="org.hakandindis.movieapp.scene.people.PeopleFragment"
         android:label="People"
-        tools:layout="@layout/fragment_people" />
+        tools:layout="@layout/fragment_people" >
+        <action
+            android:id="@+id/action_peopleFragment_to_peopleDetailFragment"
+            app:destination="@id/peopleDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/peopleDetailFragment"
+        android:name="org.hakandindis.movieapp.scene.people_detail.PeopleDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_people_detail" >
+        <argument
+            android:name="peopleId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

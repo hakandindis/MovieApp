@@ -25,7 +25,10 @@ class HomeViewModel @Inject constructor(private val movieService: MovieService) 
 
         viewModelScope.launch {
             try {
-                val response = movieService.getPopularMovies(token = ApiConstants.BEARER_TOKEN)
+                val response = movieService.getPopularMovies(
+                    token = ApiConstants.BEARER_TOKEN,
+                    ApiConstants.TURKISH
+                )
 
                 if (response.isSuccessful) {
                     movieList.postValue(response.body()?.movieItems)

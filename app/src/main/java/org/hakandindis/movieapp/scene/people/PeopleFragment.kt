@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.hakandindis.movieapp.databinding.FragmentPeopleBinding
 
@@ -16,7 +17,17 @@ class PeopleFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: PeopleViewModel by viewModels()
-    private val adapter by lazy { PeopleAdapter() }
+    private val adapter by lazy {
+        PeopleAdapter(object : PeopleClickListener {
+            override fun onPeopleClick(peopleId: Int?) {
+                peopleId?.let {
+                    val action =
+                        PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
+                    findNavController().navigate(action)
+                }
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
