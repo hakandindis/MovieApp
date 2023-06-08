@@ -45,6 +45,32 @@ class HomeViewModel @Inject constructor(private val movieService: MovieService) 
                 isLoading.value = false
             }
         }
+    }
 
+    fun searchMovieByText(query: String) {
+        isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = movieService.searchMovieByText(
+                    token = ApiConstants.BEARER_TOKEN,
+                    language = ApiConstants.TURKISH,
+                    query = query
+                )
+
+                if (response.isSuccessful) {
+                    movieList.postValue(response.body()?.movieItems)
+                } else {
+                    if (response.message().isNullOrEmpty()) {
+                        errorMessages.value = "An unknown error occurred"
+                    } else {
+                        errorMessages.value = response.message()
+                    }
+                }
+            } catch (e: Exception) {
+                errorMessages.value = e.message
+            } finally {
+                isLoading.value = false
+            }
+        }
     }
 }

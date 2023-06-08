@@ -22,4 +22,11 @@ interface MovieService {
         @Header("Authorization") token: String,
         @Query("language") language: String
     ): Response<MovieDetailResponse>
+
+    @GET("search/movie")
+    suspend fun searchMovieByText(
+        @Header("Authorization") token: String,
+        @Query("language") language: String,
+        @Query("query") query: String
+    ): Response<MovieResponse>
 }

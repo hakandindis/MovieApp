@@ -45,4 +45,30 @@ class PeopleViewModel @Inject constructor(private val peopleService: PeopleServi
             }
         }
     }
+
+    fun searchPeopleByText(query: String) {
+        viewModelScope.launch {
+            try {
+                val response =
+                    peopleService.searchMovieByText(
+                        token = ApiConstants.BEARER_TOKEN,
+                        language = ApiConstants.TURKISH,
+                        query = query
+                    )
+                if (response.isSuccessful) {
+                    peopleList.postValue(response.body()?.people)
+                } else {
+                    if (response.message().isNullOrEmpty()) {
+                        errorMessages.value = "An unknown error occured"
+                    } else {
+                        errorMessages.value = response.message()
+                    }
+                }
+            } catch (e: Exception) {
+                errorMessages.value = e.message
+            } finally {
+                isLoading.value = false
+            }
+        }
+    }
 }

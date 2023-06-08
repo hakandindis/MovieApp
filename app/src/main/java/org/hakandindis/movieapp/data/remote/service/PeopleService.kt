@@ -23,4 +23,13 @@ interface PeopleService {
         @Query("language") language: String
     ): Response<PeopleDetailResponse>
 
+
+    @GET("search/person")
+    suspend fun searchMovieByText(
+        @Header("Authorization") token: String,
+        @Query("language") language: String,
+        @Query("query") query: String
+    ): Response<PeopleResponse>
+
+
 }

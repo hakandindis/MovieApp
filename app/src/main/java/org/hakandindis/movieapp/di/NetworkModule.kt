@@ -6,7 +6,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.hakandindis.movieapp.BuildConfig
 import org.hakandindis.movieapp.data.remote.service.MovieService
 import org.hakandindis.movieapp.data.remote.service.PeopleService
 import org.hakandindis.movieapp.util.ApiConstants

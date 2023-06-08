@@ -33,9 +33,19 @@
         app:layout_constraintVertical_bias="0.5"
         tools:visibility="visible" />
 
+    <SearchView
+        android:id="@+id/fragment_home_search_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_home_movie_list"
-        tools:listitem="@layout/row_movie_item"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -43,7 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_view"
+        app:layout_constraintVertical_bias="0.5"
+        tools:listitem="@layout/row_movie_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

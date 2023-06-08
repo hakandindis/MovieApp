@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView.OnQueryTextListener
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initializeViews()
+        initializeListeners()
         observeEvents()
     }
 
@@ -42,6 +44,24 @@ class HomeFragment : Fragment() {
             }
         })
         binding.fragmentHomeMovieList.adapter = movieAdapter
+    }
+
+    private fun initializeListeners() {
+        binding.fragmentHomeSearchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.searchMovieByText(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query?.length == 0) {
+                    viewModel.getPopularMovies()
+                } else {
+                    query?.let { viewModel.searchMovieByText(it) }
+                }
+                return true
+            }
+        })
     }
 
     private fun observeEvents() {
