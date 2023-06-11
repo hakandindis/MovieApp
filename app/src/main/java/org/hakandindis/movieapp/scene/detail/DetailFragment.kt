@@ -41,8 +41,8 @@ class DetailFragment : Fragment() {
         viewModel.movieDetailResponse.observe(viewLifecycleOwner) { movie ->
             binding.fragmentDetailThumbnail.loadImage(movie.backdropPath)
             binding.fragmentDetailVote.text = movie.voteAverage.toString()
-            binding.fragmentDetailStudio.text = movie.productionCompanies?.first()?.name
-            binding.fragmentDetailLanguage.text = movie.spokenLanguages?.first()?.englishName
+            binding.fragmentDetailStudio.text = movie.productionCompanies?.firstOrNull()?.toString()
+            binding.fragmentDetailLanguage.text = movie.spokenLanguages?.firstOrNull()?.englishName
             binding.fragmentDetailOverview.text = movie.overview
 
             binding.fragmentDetailGroup.isVisible = true

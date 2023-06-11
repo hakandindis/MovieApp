@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1073169888460",
+    "project_id": "movieapp-c7f1b",
+    "storage_bucket": "movieapp-c7f1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073169888460:android:943f1a3680d45a22b63e69",
+        "android_client_info": {
+          "package_name": "org.hakandindis.movieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073169888460-422vlpkf386jd11kqqaenii0q8ahlpq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVta-t6Kb3RAD7YTOEscVSEr-Y6TCTSsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073169888460-422vlpkf386jd11kqqaenii0q8ahlpq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

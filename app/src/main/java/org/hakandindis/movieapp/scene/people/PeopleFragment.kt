@@ -82,8 +82,10 @@ class PeopleFragment : Fragment() {
         }
 
         viewModel.errorMessages.observe(viewLifecycleOwner) {
-            binding.fragmentPeopleErrorText.text = it
-            binding.fragmentPeopleErrorText.isVisible = true
+            if (viewModel.peopleList.value.isNullOrEmpty()) {
+                binding.fragmentPeopleErrorText.text = it
+                binding.fragmentPeopleErrorText.isVisible = true
+            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
