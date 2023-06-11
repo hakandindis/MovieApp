@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.hakandindis.movieapp.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MovieClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
@@ -35,14 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializeViews() {
-        movieAdapter = MovieAdapter(object : MovieClickListener {
-            override fun onMovieClick(movieId: Int?) {
-                movieId?.let {
-                    val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
-                    findNavController().navigate(action)
-                }
-            }
-        })
+        movieAdapter = MovieAdapter(this)
         binding.fragmentHomeMovieList.adapter = movieAdapter
     }
 
@@ -88,5 +81,12 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onMovieClick(movieId: Int?) {
+        movieId?.let {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

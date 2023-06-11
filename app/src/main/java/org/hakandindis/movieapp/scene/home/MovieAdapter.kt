@@ -5,16 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.hakandindis.movieapp.data.remote.model.popularmovie.MovieItem
+import org.hakandindis.movieapp.data.remote.model.popularmovie.Movie
 import org.hakandindis.movieapp.databinding.RowMovieItemBinding
-import org.hakandindis.movieapp.extension.loadCircleImage
 
 interface MovieClickListener {
     fun onMovieClick(movieId: Int?)
 }
 
 class MovieAdapter(private val movieClickListener: MovieClickListener) :
-    ListAdapter<MovieItem, MovieViewHolder>(MovieDiffUtil) {
+    ListAdapter<Movie, MovieViewHolder>(MovieDiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RowMovieItemBinding.inflate(inflater, parent, false)
@@ -32,21 +31,21 @@ class MovieViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(movieItem: MovieItem?) {
+    fun bind(movie: Movie?) {
 
-        binding.model = movieItem
+        binding.model = movie
 
         with(binding) {
-            root.setOnClickListener { movieClickListener.onMovieClick(movieItem?.id) }
+            root.setOnClickListener { movieClickListener.onMovieClick(movie?.id) }
         }
     }
 }
 
-object MovieDiffUtil : DiffUtil.ItemCallback<MovieItem>() {
-    override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem) =
+object MovieDiffUtil : DiffUtil.ItemCallback<Movie>() {
+    override fun areItemsTheSame(oldItem: Movie, newItem: Movie) =
         (oldItem.id == newItem.id)
 
-    override fun areContentsTheSame(oldItem: MovieItem, newItem: MovieItem) = (oldItem == newItem)
+    override fun areContentsTheSame(oldItem: Movie, newItem: Movie) = (oldItem == newItem)
 
 }
 

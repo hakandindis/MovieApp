@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.hakandindis.movieapp.data.remote.model.popularmovie.MovieItem
+import org.hakandindis.movieapp.data.remote.model.popularmovie.Movie
 import org.hakandindis.movieapp.data.remote.service.MovieService
 import org.hakandindis.movieapp.util.ApiConstants
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val movieService: MovieService) : ViewModel() {
-    val movieList: MutableLiveData<List<MovieItem?>?> = MutableLiveData()
+    val movieList: MutableLiveData<List<Movie?>?> = MutableLiveData()
     val isLoading = MutableLiveData(false)
     val errorMessages: MutableLiveData<String?> = MutableLiveData()
 
@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(private val movieService: MovieService) 
                 )
 
                 if (response.isSuccessful) {
-                    movieList.postValue(response.body()?.movieItems)
+                    movieList.postValue(response.body()?.movies)
                 } else {
                     if (response.message().isNullOrEmpty()) {
                         errorMessages.value = "An unknown error occured"
@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(private val movieService: MovieService) 
                 )
 
                 if (response.isSuccessful) {
-                    movieList.postValue(response.body()?.movieItems)
+                    movieList.postValue(response.body()?.movies)
                 } else {
                     if (response.message().isNullOrEmpty()) {
                         errorMessages.value = "An unknown error occurred"

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.hakandindis.movieapp.data.remote.model.people.People
 import org.hakandindis.movieapp.databinding.RowPeopleItemBinding
-import org.hakandindis.movieapp.extension.loadCircleImage
 
 interface PeopleClickListener {
     fun onPeopleClick(peopleId: Int?)

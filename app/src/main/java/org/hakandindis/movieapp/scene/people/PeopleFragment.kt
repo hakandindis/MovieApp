@@ -13,22 +13,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.hakandindis.movieapp.databinding.FragmentPeopleBinding
 
 @AndroidEntryPoint
-class PeopleFragment : Fragment() {
+class PeopleFragment : Fragment(), PeopleClickListener {
     private var _binding: FragmentPeopleBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PeopleViewModel by viewModels()
-    private val adapter by lazy {
-        PeopleAdapter(object : PeopleClickListener {
-            override fun onPeopleClick(peopleId: Int?) {
-                peopleId?.let {
-                    val action =
-                        PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
-                    findNavController().navigate(action)
-                }
-            }
-        })
-    }
+    private val adapter by lazy { PeopleAdapter(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,5 +86,13 @@ class PeopleFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onPeopleClick(peopleId: Int?) {
+        peopleId?.let {
+            val action =
+                PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }
