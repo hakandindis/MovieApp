@@ -11,7 +11,6 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import org.hakandindis.movieapp.MainActivity
 import org.hakandindis.movieapp.databinding.FragmentDetailBinding
-import org.hakandindis.movieapp.extension.loadImage
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -39,12 +38,7 @@ class DetailFragment : Fragment() {
 
     private fun observeEvents() {
         viewModel.movieDetailResponse.observe(viewLifecycleOwner) { movie ->
-            binding.fragmentDetailThumbnail.loadImage(movie.backdropPath)
-            binding.fragmentDetailVote.text = movie.voteAverage.toString()
-            binding.fragmentDetailStudio.text = movie.productionCompanies?.firstOrNull()?.toString()
-            binding.fragmentDetailLanguage.text = movie.spokenLanguages?.firstOrNull()?.englishName
-            binding.fragmentDetailOverview.text = movie.overview
-
+            binding.model = movie
             binding.fragmentDetailGroup.isVisible = true
 
             (requireActivity() as MainActivity).supportActionBar?.title = movie.title

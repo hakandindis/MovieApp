@@ -33,10 +33,7 @@ class PeopleViewHolder(
 
     fun bind(people: People) {
         with(binding) {
-            rowPeopleItemThumbnail.loadCircleImage(people.profilePath)
-            rowPeopleItemName.text = people.name
-            rowPeopleItemGender.text = if (people.gender == 1) "Female" else "Male"
-            rowPeopleItemVote.text = people.popularity.toString()
+            binding.model = people
 
             root.setOnClickListener { peopleClickListener.onPeopleClick(people.id) }
         }

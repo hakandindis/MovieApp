@@ -34,15 +34,11 @@ class MovieViewHolder(
 
     fun bind(movieItem: MovieItem?) {
 
-        with(binding) {
-            rowMovieItemTitle.text = movieItem?.title
-            rowMovieItemOverview.text = movieItem?.overview
-            rowMovieItemVoteScore.text = movieItem?.voteAverage.toString()
-            rowMovieItemThumbnail.loadCircleImage(movieItem?.posterPath)
+        binding.model = movieItem
 
+        with(binding) {
             root.setOnClickListener { movieClickListener.onMovieClick(movieItem?.id) }
         }
-
     }
 }
 

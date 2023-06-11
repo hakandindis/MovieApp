@@ -1,160 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".scene.people_detail.PeopleDetailFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="org.hakandindis.movieapp.data.remote.model.peopledetail.PeopleDetailResponse" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".scene.people_detail.PeopleDetailFragment">
 
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/fragment_detail_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="fragment_detail_thumbnail,fragment_detail_vote_thumbnail,fragment_detail_vote,fragment_detail_studio_thumbnail,fragment_detail_studio,fragment_detail_language_thumbnail,fragment_detail_language,fragment_detail_overview"
-        tools:visibility="visible" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/fragment_detail_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="fragment_detail_thumbnail,fragment_detail_vote_thumbnail,fragment_detail_vote,fragment_detail_studio_thumbnail,fragment_detail_studio,fragment_detail_language_thumbnail,fragment_detail_language,fragment_detail_overview"
+            tools:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/fragment_detail_language_thumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/ic_language"
-        app:layout_constraintBottom_toBottomOf="@+id/divider2"
-        app:layout_constraintStart_toEndOf="@+id/divider2"
-        app:layout_constraintTop_toTopOf="@+id/divider2" />
+        <ImageView
+            android:id="@+id/fragment_detail_language_thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_language"
+            app:layout_constraintBottom_toBottomOf="@+id/divider2"
+            app:layout_constraintStart_toEndOf="@+id/divider2"
+            app:layout_constraintTop_toTopOf="@+id/divider2" />
 
-    <ImageView
-        android:id="@+id/fragment_detail_thumbnail"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/fragment_detail_thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:set_rectangle_thumbnail="@{model.profilePath}"
+            tools:src="@tools:sample/avatars" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="1dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toStartOf="@+id/divider2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_detail_thumbnail" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_thumbnail" />
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="1dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/divider"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_detail_thumbnail" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_thumbnail" />
 
-    <ImageView
-        android:id="@+id/fragment_detail_vote_thumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_star"
-        app:layout_constraintBottom_toBottomOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider" />
+        <ImageView
+            android:id="@+id/fragment_detail_vote_thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider" />
 
-    <TextView
-        android:id="@+id/fragment_detail_vote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_vote_thumbnail"
-        app:layout_constraintEnd_toStartOf="@+id/divider"
-        app:layout_constraintStart_toEndOf="@+id/fragment_detail_vote_thumbnail"
-        app:layout_constraintTop_toTopOf="@+id/fragment_detail_vote_thumbnail"
-        tools:text="4.567" />
+        <TextView
+            android:id="@+id/fragment_detail_vote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{model.popularity.toString()}"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_vote_thumbnail"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintStart_toEndOf="@+id/fragment_detail_vote_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/fragment_detail_vote_thumbnail"
+            tools:text="4.567" />
 
-    <ImageView
-        android:id="@+id/fragment_detail_studio_thumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/ic_building"
-        app:layout_constraintBottom_toBottomOf="@+id/divider"
-        app:layout_constraintStart_toEndOf="@+id/divider"
-        app:layout_constraintTop_toTopOf="@+id/divider" />
+        <ImageView
+            android:id="@+id/fragment_detail_studio_thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_building"
+            app:layout_constraintBottom_toBottomOf="@+id/divider"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="@+id/divider" />
 
-    <TextView
-        android:id="@+id/fragment_detail_studio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_studio_thumbnail"
-        app:layout_constraintEnd_toStartOf="@+id/divider2"
-        app:layout_constraintStart_toEndOf="@+id/fragment_detail_studio_thumbnail"
-        app:layout_constraintTop_toTopOf="@+id/fragment_detail_studio_thumbnail"
-        tools:text="Universal Studio" />
+        <TextView
+            android:id="@+id/fragment_detail_studio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{model.placeOfBirth}"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_studio_thumbnail"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintStart_toEndOf="@+id/fragment_detail_studio_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/fragment_detail_studio_thumbnail"
+            tools:text="Universal Studio" />
 
-    <TextView
-        android:id="@+id/fragment_detail_language"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_language_thumbnail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragment_detail_language_thumbnail"
-        app:layout_constraintTop_toTopOf="@+id/fragment_detail_language_thumbnail"
-        tools:text="English" />
+        <TextView
+            android:id="@+id/fragment_detail_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.birthday}"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_detail_language_thumbnail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_detail_language_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/fragment_detail_language_thumbnail"
+            tools:text="1972-05-02" />
 
-    <TextView
-        android:id="@+id/fragment_detail_overview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        tools:text="TextView" />
+        <TextView
+            android:id="@+id/fragment_detail_overview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.biography}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:text="TextView" />
 
-    <ProgressBar
-        android:id="@+id/fragment_detail_progressbar"
-        android:visibility="gone"
-        tools:visibility="visible"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        <ProgressBar
+            android:id="@+id/fragment_detail_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/fragment_detail_error_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:text="TextView" />
+        <TextView
+            android:id="@+id/fragment_detail_error_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            tools:text="TextView" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
