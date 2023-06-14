@@ -10,6 +10,7 @@ plugins {
 
 android {
     namespace 'org.hakandindis.movieapp'
+    flavorDimensions 'movie'
     compileSdk 33
 
     defaultConfig {
@@ -23,9 +24,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            shrinkResources true
+            minifyEnabled true
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
         }
     }
     buildFeatures {
@@ -39,6 +47,16 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    productFlavors {
+        development {
+            dimension 'movie'
+            versionNameSuffix '-development'
+        }
+        store {
+            dimension 'movie'
+            versionNameSuffix '-store'
+        }
     }
 }
 
