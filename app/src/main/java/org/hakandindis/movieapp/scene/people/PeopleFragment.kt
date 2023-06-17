@@ -18,7 +18,6 @@ class PeopleFragment : Fragment(), PeopleClickListener {
     private val binding get() = _binding!!
 
     private val viewModel: PeopleViewModel by viewModels()
-    private val adapter by lazy { PeopleAdapter(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,19 +25,18 @@ class PeopleFragment : Fragment(), PeopleClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
+
+        binding.lifecycleOwner = this
+        binding.listener = this
+        binding.viewModel = viewModel
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initializeViews()
         initializeListeners()
         observeEvents()
-    }
-
-    private fun initializeViews() {
-        binding.peopleList.adapter = adapter
     }
 
     private fun initializeListeners() {
@@ -52,6 +50,7 @@ class PeopleFragment : Fragment(), PeopleClickListener {
             override fun onQueryTextChange(query: String?): Boolean {
                 if (query?.length == 0) {
                     viewModel.getPopularPeople()
+                    binding.fragmentPeopleSearchbar.clearFocus()
                 } else {
                     query?.let { viewModel.searchPeopleByText(it) }
                 }
@@ -61,16 +60,6 @@ class PeopleFragment : Fragment(), PeopleClickListener {
     }
 
     private fun observeEvents() {
-        viewModel.peopleList.observe(viewLifecycleOwner) { list ->
-            if (list.isNullOrEmpty()) {
-                binding.fragmentPeopleErrorText.text = "There is any people"
-                binding.fragmentPeopleErrorText.isVisible = true
-            } else {
-                adapter.submitList(list)
-                binding.fragmentPeopleErrorText.isVisible = false
-            }
-        }
-
         viewModel.errorMessages.observe(viewLifecycleOwner) {
             if (viewModel.peopleList.value.isNullOrEmpty()) {
                 binding.fragmentPeopleErrorText.text = it

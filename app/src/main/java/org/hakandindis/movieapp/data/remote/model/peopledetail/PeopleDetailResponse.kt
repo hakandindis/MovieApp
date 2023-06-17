@@ -1,8 +1,11 @@
 package org.hakandindis.movieapp.data.remote.model.peopledetail
 
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+
+@Keep
 data class PeopleDetailResponse(
     @SerializedName("biography") val biography: String?,
     @SerializedName("birthday") val birthday: String?,

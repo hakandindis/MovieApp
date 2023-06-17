@@ -17,26 +17,23 @@ class HomeFragment : Fragment(), MovieClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.lifecycleOwner = this
+        binding.listener = this
+        binding.viewModel = viewModel
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initializeViews()
         initializeListeners()
         observeEvents()
-    }
-
-    private fun initializeViews() {
-        movieAdapter = MovieAdapter(this)
-        binding.fragmentHomeMovieList.adapter = movieAdapter
     }
 
     private fun initializeListeners() {
@@ -49,6 +46,7 @@ class HomeFragment : Fragment(), MovieClickListener {
             override fun onQueryTextChange(query: String?): Boolean {
                 if (query?.length == 0) {
                     viewModel.getPopularMovies()
+                    binding.fragmentHomeSearchView.clearFocus()
                 } else {
                     query?.let { viewModel.searchMovieByText(it) }
                 }
@@ -58,15 +56,6 @@ class HomeFragment : Fragment(), MovieClickListener {
     }
 
     private fun observeEvents() {
-        viewModel.movieList.observe(viewLifecycleOwner) { list ->
-            if (list.isNullOrEmpty()) {
-                binding.fragmentHomeErrorTextView.text = "There is any movie"
-                binding.fragmentHomeErrorTextView.isVisible = true
-            } else {
-                movieAdapter.submitList(list)
-                binding.fragmentHomeErrorTextView.isVisible = false
-            }
-        }
 
         viewModel.errorMessages.observe(viewLifecycleOwner) {
             binding.fragmentHomeErrorTextView.text = it
