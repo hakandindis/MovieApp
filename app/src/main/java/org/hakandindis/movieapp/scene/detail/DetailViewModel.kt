@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.hakandindis.movieapp.BuildConfig
 import org.hakandindis.movieapp.data.remote.model.moviedetail.MovieDetailResponse
 import org.hakandindis.movieapp.data.remote.service.MovieService
-import org.hakandindis.movieapp.util.ApiConstants
+import org.hakandindis.movieapp.util.Languages
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,8 +26,8 @@ class DetailViewModel @Inject constructor(private val movieService: MovieService
             try {
                 val response = movieService.getSelectedMovieById(
                     movieId = movieId.toString(),
-                    token = ApiConstants.BEARER_TOKEN,
-                    language = ApiConstants.TURKISH
+                    token = BuildConfig.BEARER_TOKEN,
+                    language = Languages.ENGLISH.languageName
                 )
 
                 if (response.isSuccessful) {

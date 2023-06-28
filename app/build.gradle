@@ -52,10 +52,19 @@ android {
         development {
             dimension 'movie'
             versionNameSuffix '-development'
+
+            buildConfigField "String", "BEARER_TOKEN", "\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGI1YTVkYmFmMmI1ZTg4NWYxYTQ5MzIwNDY5ZTkwMCIsInN1YiI6IjYzZWZlNjlkY2FhY2EyMDA3ZjVkZjI3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ctj-NE1GKRpbzfsWHwHtTAsYZGoDktka_lVD25JSNMU\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
         }
+
         store {
             dimension 'movie'
             versionNameSuffix '-store'
+
+            buildConfigField "String", "BEARER_TOKEN", "\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGI1YTVkYmFmMmI1ZTg4NWYxYTQ5MzIwNDY5ZTkwMCIsInN1YiI6IjYzZWZlNjlkY2FhY2EyMDA3ZjVkZjI3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ctj-NE1GKRpbzfsWHwHtTAsYZGoDktka_lVD25JSNMU\""
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
         }
     }
 }

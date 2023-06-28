@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.hakandindis.movieapp.BuildConfig
 import org.hakandindis.movieapp.data.remote.model.people.People
 import org.hakandindis.movieapp.data.remote.service.PeopleService
-import org.hakandindis.movieapp.util.ApiConstants
+import org.hakandindis.movieapp.util.Languages
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +29,10 @@ class PeopleViewModel @Inject constructor(private val peopleService: PeopleServi
         viewModelScope.launch {
             try {
                 val response =
-                    peopleService.getPopularPeople(ApiConstants.BEARER_TOKEN, ApiConstants.TURKISH)
+                    peopleService.getPopularPeople(
+                        BuildConfig.BEARER_TOKEN,
+                        Languages.ENGLISH.languageName
+                    )
                 if (response.isSuccessful) {
                     peopleList.postValue(response.body()?.people)
                 } else {
@@ -51,8 +55,8 @@ class PeopleViewModel @Inject constructor(private val peopleService: PeopleServi
             try {
                 val response =
                     peopleService.searchMovieByText(
-                        token = ApiConstants.BEARER_TOKEN,
-                        language = ApiConstants.TURKISH,
+                        token = BuildConfig.BEARER_TOKEN,
+                        language = Languages.ENGLISH.languageName,
                         query = query
                     )
                 if (response.isSuccessful) {
