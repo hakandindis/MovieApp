@@ -30,6 +30,4 @@ interface PeopleService {
         @Query("language") language: String,
         @Query("query") query: String
     ): Response<PeopleResponse>
-
-
 }
