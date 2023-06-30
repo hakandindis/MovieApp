@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
-import org.hakandindis.movieapp.MainActivity
+import org.hakandindis.movieapp.scene.main.MainActivity
 import org.hakandindis.movieapp.databinding.FragmentDetailBinding
 
 @AndroidEntryPoint

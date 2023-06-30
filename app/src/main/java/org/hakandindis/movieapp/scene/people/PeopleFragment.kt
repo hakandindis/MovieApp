@@ -79,8 +79,7 @@ class PeopleFragment : Fragment(), PeopleClickListener {
 
     override fun onPeopleClick(peopleId: Int?) {
         peopleId?.let {
-            val action =
-                PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
+            val action = PeopleFragmentDirections.actionPeopleFragmentToPeopleDetailFragment(it)
             findNavController().navigate(action)
         }
     }

@@ -9,7 +9,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PeopleService {
-
     @GET("trending/person/week")
     suspend fun getPopularPeople(
         @Header("Authorization") token: String,

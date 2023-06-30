@@ -9,7 +9,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieService {
-
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Header("Authorization") token: String,
